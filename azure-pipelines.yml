@@ -1,0 +1,23 @@
+trigger:
+- master
+
+pool:
+  vmImage: ubuntu-latest
+
+steps:
+- task: FlutterInstall@0
+- task: FlutterBuild@0
+  inputs:
+    target: 'apk'
+    projectDirectory: '.'
+    flutterDirectory: '.'
+  inputs:
+    channel: 'stable'
+    version: 'latest'
+- task: FlutterTest@0
+  inputs:
+    projectDirectory: '.'
+    testName: 'test'
+    testPlainName: 'test01'
+
+
